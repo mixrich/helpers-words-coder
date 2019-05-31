@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="container pt-5 pb-5">
-        <div class="form-group">
-            <label for="source">
-                Введите словосочетания <br>
-                <small class="text-secondary">Каждое с новой строки, только кириллица</small>
-            </label>
-            <textarea id="source" class="form-control" rows="10"></textarea>
-        </div>
-        <div class="card mt-3">
-            <div class="card-body">
-                <h5 class="card-title">Результат</h5>
-                <div id="result"></div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                    <h2>Кодируем буквы цифрами</h2>
+
+                    <label for="source">
+                        Введите словосочетания <br>
+                        <small class="text-secondary">Каждое с новой строки, только кириллица</small>
+                    </label>
+                    <textarea id="source" class="form-control" rows="10"></textarea>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Результат</h5>
+                        <div id="result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <h2>Кодируем буквы другими буквами</h2>
+                    
+                    
+                    <h3>Ключ</h4>
+                    <div>
+                        Исходный: <output id="random-letters-strict"></output>
+                    </div>
+                    
+                    <div>
+                        Конечный: <output id="random-letters-shifted"></output>
+                    </div>
+
+                    <hr>
+                    <label for="source-letters">
+                        Введите словосочетания <br>
+                        <small class="text-secondary">Каждое с новой строки, только кириллица</small>
+                    </label>
+
+                    <textarea id="source-letters" class="form-control" rows="10"></textarea>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Результат</h5>
+                        <div id="result-letters"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
-    <script>
-        const dic = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'];
 
-        function getCodedString(str) {
-            const phrases = str.split('\n');
-            return phrases.map((phrase) => {
-                return phrase.split(' ').map((word) => {
-                    return word.split('').map((char, index) => dic.indexOf(char.toLowerCase()) + 1).join(' ');
-                }).join(' ');
-            }).join('<br>');
-        }
-
-        source.addEventListener('input', function() {
-            const code = getCodedString(this.value);
-            result.innerHTML = code;
-        });
-    </script>
+    <script src="numbered-letters.js"></script>
+    <script src="random-letters.js"></script>
 </body>
+
 </html>
